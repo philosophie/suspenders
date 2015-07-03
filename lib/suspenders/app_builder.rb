@@ -350,6 +350,8 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
 
     def configure_heroku_app(environment)
       run_heroku "addons:create sendgrid", environment
+      run_heroku "addons:create airbrake:free_heroku", environment
+      run_heroku "addons:create papertrail", environment
 
       domain = "#{heroku_app_name_for(environment)}.herokuapp.com"
 
@@ -483,6 +485,10 @@ end
 
     def configure_rubocop
       template '.rubocop.yml', '.rubocop.yml'
+    end
+
+    def configure_airbrake
+      template 'airbrake.rb', 'config/initializers/airbrake.rb'
     end
 
     private

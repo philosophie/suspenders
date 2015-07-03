@@ -27,7 +27,8 @@ updates.
 
 It includes application gems like:
 
-* [Airbrake](https://github.com/airbrake/airbrake) for exception notification
+* [Airbrake](https://github.com/airbrake/airbrake) for exception notification,
+  set your API key in the environment with `AIRBRAKE_API_KEY`
 * [Autoprefixer Rails](https://github.com/ai/autoprefixer-rails) for CSS vendor prefixes
 * [Sidekiq](https://github.com/mperham/sidekiq) for background processing
 * [Flutie](https://github.com/thoughtbot/flutie) for `page_title` and `body_class` view
@@ -111,7 +112,9 @@ This:
 * Configures staging with `RACK_ENV` and `RAILS_ENV` environment variables set
   to `staging`
 * Adds the [Rails 12factor][rails-12factor] gem
-* Adds Sendgrid add-on and configure SMTP settings to use it
+* Adds free Sendgrid add-on and configure SMTP settings to use it
+* Adds free Airbrake add-on
+* Adds free Papertrail add-on
 
 [rails-12factor]: https://github.com/heroku/rails_12factor
 
