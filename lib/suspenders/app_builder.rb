@@ -301,7 +301,7 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
 
     def setup_javascripts
       remove_file "app/assets/javascripts/application.js"
-      copy_file "application.js", "app/assets/javascripts/application.js"
+      copy_file "application.coffee", "app/assets/javascripts/application.coffee"
       create_empty_directory('app/assets/javascripts/application')
     end
 
@@ -340,9 +340,9 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       )
 
       inject_into_file(
-        'app/assets/javascripts/application.js',
-        %{\n\/\/= require bootstrap-sprockets},
-        after: /\/\/= require jquery-ujs/
+        'app/assets/javascripts/application.coffee',
+        %{\n#= require bootstrap-sprockets},
+        after: /#= require jquery-ujs/
       )
     end
 
@@ -360,15 +360,15 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       )
 
       inject_into_file(
-        'app/assets/javascripts/application.js',
-        %{\n\/\/= require foundation},
-        after: /\/\/= require jquery-ujs/
+        'app/assets/javascripts/application.coffee',
+        %{\n#= require foundation},
+        after: /#= require jquery-ujs/
       )
 
       inject_into_file(
-        'app/assets/javascripts/application.js',
-        %{\n$(document).foundation();},
-        after: /\/\/= require_tree ./
+        'app/assets/javascripts/application.coffee',
+        %{\n$(document).foundation()},
+        after: /#= require_tree \.\/application/
       )
 
       inject_into_file(
