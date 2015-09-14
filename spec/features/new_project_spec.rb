@@ -125,20 +125,6 @@ RSpec.describe "Suspend a new project with default configuration" do
       to match(/^ +config.action_mailer.delivery_method = :test$/)
   end
 
-  it "configs active job queue adapter" do
-    run_suspenders
-
-    application_config = IO.read("#{project_path}/config/application.rb")
-    test_config = IO.read("#{project_path}/config/environments/test.rb")
-
-    expect(application_config).to match(
-      /^ +config.active_job.queue_adapter = :sidekiq$/
-    )
-    expect(test_config).to match(
-      /^ +config.active_job.queue_adapter = :inline$/
-    )
-  end
-
   it "adds spring to binstubs" do
     run_suspenders
 

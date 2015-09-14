@@ -281,13 +281,6 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       action_mailer_host "production", %{ENV.fetch("HOST")}
     end
 
-    def configure_active_job
-      configure_application_file(
-        "config.active_job.queue_adapter = :sidekiq"
-      )
-      configure_environment "test", "config.active_job.queue_adapter = :inline"
-    end
-
     def fix_i18n_deprecation_warning
       config = <<-RUBY
     config.i18n.enforce_available_locales = true
