@@ -466,7 +466,7 @@ end
         'SMTP_ADDRESS=smtp.mandrillapp.com',
         'SMTP_PROVIDER=mandrill',
         "HOST=#{domain}",
-        "ASSET_HOST=#{domain}"
+        "ASSET_HOST=//#{domain}"
       ]
 
       run_heroku "config:add #{env_vars.join(' ')}", environment
