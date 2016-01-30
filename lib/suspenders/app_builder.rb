@@ -455,7 +455,7 @@ end
     end
 
     def configure_heroku_app(environment)
-      run_heroku "addons:create mandrill", environment
+      run_heroku "addons:create sendgrid", environment
       run_heroku "addons:create airbrake:free_heroku", environment
       run_heroku "addons:create papertrail", environment
 
@@ -463,8 +463,8 @@ end
 
       env_vars = [
         'SMTP_DOMAIN=heroku.com',
-        'SMTP_ADDRESS=smtp.mandrillapp.com',
-        'SMTP_PROVIDER=mandrill',
+        'SMTP_ADDRESS=smtp.sendgrid.net',
+        'SMTP_PROVIDER=sendgrid',
         "HOST=#{domain}",
         "ASSET_HOST=//#{domain}"
       ]
