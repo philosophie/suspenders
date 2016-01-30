@@ -53,6 +53,8 @@ It includes application gems like:
 * [Title](https://github.com/calebthompson/title) for storing titles in
   translations
 * [Unicorn](https://github.com/defunkt/unicorn) to serve HTTP requests
+* [rails_12factor](https://github.com/heroku/rails_12factor) for easier Heroku
+  deploys
 
 And development gems like:
 
@@ -121,7 +123,7 @@ By default, suspenders will:
 * Configures staging with `RACK_ENV` and `RAILS_ENV` environment variables set
   to `staging`
 * Adds the [Rails 12factor][rails-12factor] gem
-* Adds free Mandrill add-on and configure SMTP settings to use it
+* Adds free Sendgrid add-on and configure SMTP settings to use it
 * Adds free Airbrake add-on
 * Adds free Papertrail add-on
 
