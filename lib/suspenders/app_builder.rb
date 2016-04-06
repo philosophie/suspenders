@@ -458,6 +458,12 @@ end
       run_heroku "addons:create sendgrid", environment
       run_heroku "addons:create airbrake:free_heroku", environment
       run_heroku "addons:create papertrail", environment
+      run_heroku "addons:create heroku-postgresql:hobby-dev", environment
+
+      if environment == 'production'
+        run_heroku "pg:backups schedule DATABASE_URL "\
+                   "--at '02:00 America/Los_Angeles'", environment
+      end
 
       domain = "#{heroku_app_name_for(environment)}.herokuapp.com"
 
