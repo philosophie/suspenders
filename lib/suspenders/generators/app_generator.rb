@@ -99,6 +99,7 @@ module Suspenders
       build :configure_generators
       build :configure_i18n_for_missing_translations
       build :configure_rubocop
+      build :configure_quiet_assets
     end
 
     def setup_test_environment
@@ -147,10 +148,9 @@ module Suspenders
       build :configure_active_job
       build :configure_time_formats
       build :configure_simple_form
-      build :disable_xml_params
       build :fix_i18n_deprecation_warning
       build :setup_default_rake_task
-      build :configure_unicorn
+      build :configure_puma
       build :setup_foreman
       build :configure_airbrake
     end
