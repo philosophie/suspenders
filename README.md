@@ -52,7 +52,7 @@ It includes application gems like:
   and style
 * [Title](https://github.com/calebthompson/title) for storing titles in
   translations
-* [Unicorn](https://github.com/defunkt/unicorn) to serve HTTP requests
+* [Puma](http://puma.io) to serve HTTP requests
 * [rails_12factor](https://github.com/heroku/rails_12factor) for easier Heroku
   deploys
 

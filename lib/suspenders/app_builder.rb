@@ -126,7 +126,7 @@ module Suspenders
 
       inject_into_file(
         "config/environments/production.rb",
-        '  config.static_cache_control = "public, max-age=#{1.year.to_i}"',
+        '  config.public_file_server.headers = { \'Cache-Control\' => "public, max-age=#{1.year.to_i}" }',
         after: serve_static_files_line
       )
     end
@@ -292,8 +292,8 @@ end
       generate 'rspec:install'
     end
 
-    def configure_unicorn
-      copy_file 'unicorn.rb', 'config/unicorn.rb'
+    def configure_puma
+      copy_file 'puma.rb', 'config/puma.rb', force: true
     end
 
     def setup_foreman
@@ -486,7 +486,7 @@ end
 
     def set_heroku_serve_static_files
       %w(staging production).each do |environment|
-        run_heroku "config:add RAILS_SERVE_STATIC_FILES=true", environment
+        run_heroku "config:add RAILS_SERVE_STATIC_FILES=true RAILS_LOG_TO_STDOUT=true", environment
       end
     end
 
@@ -532,10 +532,6 @@ end
         "Rails.application.routes.draw do\nend"
     end
 
-    def disable_xml_params
-      copy_file 'disable_xml_params.rb', 'config/initializers/disable_xml_params.rb'
-    end
-
     def setup_default_rake_task
       append_file 'Rakefile' do
         <<-EOS
@@ -566,6 +562,14 @@ end
       bundle_command 'exec stairs --use-defaults'
     end
 
+    def configure_quiet_assets
+      config = <<-RUBY
+    config.assets.quiet = true
+      RUBY
+
+      inject_into_class "config/application.rb", "Application", config
+    end
+
     private
 
     def raise_on_missing_translations_in(environment)
@@ -591,7 +595,7 @@ end
     end
 
     def serve_static_files_line
-      "config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?\n"
+      "config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?\n"
     end
 
     def heroku_app_name_for(environment)
