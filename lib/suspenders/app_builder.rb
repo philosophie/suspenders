@@ -456,7 +456,7 @@ end
 
     def configure_heroku_app(environment)
       run_heroku "addons:create sendgrid", environment
-      run_heroku "addons:create airbrake:free_heroku", environment
+      run_heroku "addons:create airbrake:free-hrku", environment
       run_heroku "addons:create papertrail", environment
       run_heroku "addons:create heroku-postgresql:hobby-dev", environment
 
