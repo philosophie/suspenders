@@ -459,6 +459,7 @@ end
       run_heroku "addons:create airbrake:free-hrku", environment
       run_heroku "addons:create papertrail", environment
       run_heroku "addons:create heroku-postgresql:hobby-dev", environment
+      run_heroku "addons:create newrelic:wayne", environment
 
       if environment == 'production'
         run_heroku "pg:backups schedule DATABASE_URL "\
