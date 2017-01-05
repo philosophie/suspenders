@@ -23,3 +23,8 @@ AllCops:
     - "config/**/*"
     - "Rakefile"
     - "spec/i18n_spec.rb"
+
+BlockLength:
+  Exclude:
+    - "spec/**/*"
+    - "app/admin/**/*"
