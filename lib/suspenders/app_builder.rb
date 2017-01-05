@@ -544,7 +544,7 @@ if defined?(RSpec) && defined?(RuboCop)
 
   RuboCop::RakeTask.new
 
-  task default: [:spec, :rubocop]
+  task default: [:spec, :rubocop, 'bundler:audit']
 end
         EOS
       end
