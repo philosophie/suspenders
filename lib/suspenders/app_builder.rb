@@ -6,6 +6,10 @@ module Suspenders
       template 'README.md.erb', 'README.md'
     end
 
+    def pull_request_template
+      template 'PULL_REQUEST_TEMPLATE.md.erb', 'PULL_REQUEST_TEMPLATE.md'
+    end
+
     def raise_on_delivery_errors
       replace_in_file 'config/environments/development.rb',
         'raise_delivery_errors = false', 'raise_delivery_errors = true'
