@@ -153,6 +153,7 @@ module Suspenders
       build :configure_puma
       build :setup_foreman
       build :configure_airbrake
+      build :configure_lib_directory
     end
 
     def setup_stylesheets
