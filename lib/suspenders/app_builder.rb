@@ -571,6 +571,15 @@ end
       inject_into_class "config/application.rb", "Application", config
     end
 
+    def configure_lib_directory
+      config = <<-RUBY
+    config.autoload_paths << Rails.root.join('lib')
+    config.eager_load_paths << Rails.root.join('lib')
+      RUBY
+
+      inject_into_class "config/application.rb", "Application", config
+    end
+
     private
 
     def raise_on_missing_translations_in(environment)
