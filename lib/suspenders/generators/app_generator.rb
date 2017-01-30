@@ -40,6 +40,7 @@ module Suspenders
     end
 
     def suspenders_customization
+      invoke :copy_project_markdown_files
       invoke :customize_gemfile
       invoke :setup_development_environment
       invoke :setup_test_environment
@@ -65,6 +66,11 @@ module Suspenders
       invoke :push_to_origin
       invoke :setup_css_framework
       invoke :outro
+    end
+
+    def copy_project_markdown_files
+      build :readme
+      build :pull_request_template
     end
 
     def customize_gemfile
