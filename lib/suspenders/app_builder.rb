@@ -464,6 +464,7 @@ end
       run_heroku "addons:create papertrail", environment
       run_heroku "addons:create heroku-postgresql:hobby-dev", environment
       run_heroku "addons:create newrelic:wayne", environment
+      run_heroku "addons:create heroku-redis:hobby-dev", environment
 
       if environment == 'production'
         run_heroku "pg:backups schedule DATABASE_URL "\
