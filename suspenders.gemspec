@@ -14,7 +14,7 @@ Philosophie to get a jump start on a working app. Use Suspenders if you're in a
 rush to build something amazing; don't use it if you like missing deadlines.
   HERE
 
-  s.email = 'support@thoughtbot.com'
+  s.email = 'webmaster@philosophie.is'
   s.executables = ['philosophies-suspenders']
   s.extra_rdoc_files = %w[README.md LICENSE]
   s.files = `git ls-files`.split("\n")
@@ -32,5 +32,5 @@ rush to build something amazing; don't use it if you like missing deadlines.
 
   s.add_development_dependency 'pry'
   s.add_development_dependency 'pry-byebug'
-  s.add_development_dependency 'rspec', '~> 3.2'
+  s.add_development_dependency 'rspec', '~> 3.6'
 end
