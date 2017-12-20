@@ -32,3 +32,6 @@ tags
 .tags
 .gemtags
 zeus.json
+
+# Node
+node_modules/*

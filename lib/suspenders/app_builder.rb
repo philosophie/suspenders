@@ -53,8 +53,8 @@ module Suspenders
       inject_into_class 'config/application.rb', 'Application', config
     end
 
-    def set_up_factory_girl_for_rspec
-      copy_file 'factory_girl_rspec.rb', 'spec/support/factory_girl.rb'
+    def set_up_factory_bot_for_rspec
+      copy_file 'factory_bot_rspec.rb', 'spec/support/factory_bot.rb'
     end
 
     def configure_newrelic
@@ -218,6 +218,14 @@ end
       create_file '.ruby-version', "#{Suspenders::RUBY_VERSION}\n"
     end
 
+    def add_webpacker
+      inject_into_file(
+        "Gemfile",
+        %{\ngem "webpacker"},
+        after: /gem "puma"/
+      )
+    end
+
     def setup_heroku_specific_gems
       inject_into_file(
         "Gemfile",
@@ -314,6 +322,14 @@ end
       remove_file "app/assets/javascripts/application.js"
       copy_file "application.js", "app/assets/javascripts/application.js"
       create_empty_directory('app/assets/javascripts/application')
+    end
+
+    def inject_webpacker_into_layout
+      inject_into_file(
+        'app/views/application/_javascript.html.erb',
+        %{\n<%= javascript_pack_tag 'application' %>},
+        after: Regexp.new("<%= javascript_include_tag :application %>")
+      )
     end
 
     def install_bourbon_n_friends
