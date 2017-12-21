@@ -53,10 +53,6 @@ module Suspenders
       inject_into_class 'config/application.rb', 'Application', config
     end
 
-    def set_up_factory_girl_for_rspec
-      copy_file 'factory_girl_rspec.rb', 'spec/support/factory_girl.rb'
-    end
-
     def configure_newrelic
       template 'newrelic.yml.erb', 'config/newrelic.yml'
     end
@@ -218,6 +214,14 @@ end
       create_file '.ruby-version', "#{Suspenders::RUBY_VERSION}\n"
     end
 
+    def add_webpacker
+      inject_into_file(
+        "Gemfile",
+        %{\ngem "webpacker"},
+        after: /gem "puma"/
+      )
+    end
+
     def setup_heroku_specific_gems
       inject_into_file(
         "Gemfile",
@@ -314,6 +318,14 @@ end
       remove_file "app/assets/javascripts/application.js"
       copy_file "application.js", "app/assets/javascripts/application.js"
       create_empty_directory('app/assets/javascripts/application')
+    end
+
+    def inject_webpacker_into_layout
+      inject_into_file(
+        'app/views/application/_javascript.html.erb',
+        %{\n<%= javascript_pack_tag 'application' %>},
+        after: Regexp.new("<%= javascript_include_tag :application %>")
+      )
     end
 
     def install_bourbon_n_friends
@@ -441,7 +453,7 @@ end
       rack_env = "RACK_ENV=staging RAILS_ENV=staging"
       app_name = heroku_app_name_for("staging")
 
-      run_heroku "create #{app_name} --ssh-git #{flags}", "staging"
+      run_heroku "create #{app_name} #{flags}", "staging"
       run_heroku "config:add #{rack_env}", "staging"
       configure_heroku_app("staging")
     end
@@ -449,7 +461,7 @@ end
     def create_production_heroku_app(flags)
       app_name = heroku_app_name_for("production")
 
-      run_heroku "create #{app_name} --ssh-git #{flags}", "production"
+      run_heroku "create #{app_name} #{flags}", "production"
       configure_heroku_app("production")
     end
 

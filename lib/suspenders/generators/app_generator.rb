@@ -1,6 +1,5 @@
 require 'rails/generators'
 require 'rails/generators/rails/app/app_generator'
-require 'pry-byebug'
 
 module Suspenders
   class AppGenerator < Rails::Generators::AppGenerator
@@ -33,6 +32,14 @@ module Suspenders
 
     class_option :skip_git, type: :boolean, default: false,
       desc: "Don't create and commit to git repository"
+
+    def initialize(*args)
+      super
+
+      if options[:webpack] && `which yarn`.empty?
+        raise Rails::Generators::Error, 'ERROR: yarn is required in order to use webpack'
+      end
+    end
 
     def finish_template
       invoke :suspenders_customization
@@ -76,6 +83,7 @@ module Suspenders
     def customize_gemfile
       build :replace_gemfile
       build :set_ruby_to_version_being_used
+      build :add_webpacker if options[:webpack]
 
       unless options[:skip_heroku]
         build :setup_heroku_specific_gems
@@ -110,7 +118,6 @@ module Suspenders
 
     def setup_test_environment
       say 'Setting up the test environment'
-      build :set_up_factory_girl_for_rspec
       build :generate_rspec
       build :configure_rspec
       build :enable_database_cleaner
@@ -168,8 +175,9 @@ module Suspenders
     end
 
     def setup_javascripts
-      say 'Set up javascripts'
+      say 'Set up javascript'
       build :setup_javascripts
+      build :inject_webpacker_into_layout if options[:webpack]
     end
 
     def setup_css_framework
