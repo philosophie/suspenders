@@ -53,10 +53,6 @@ module Suspenders
       inject_into_class 'config/application.rb', 'Application', config
     end
 
-    def set_up_factory_bot_for_rspec
-      copy_file 'factory_bot_rspec.rb', 'spec/support/factory_bot.rb'
-    end
-
     def configure_newrelic
       template 'newrelic.yml.erb', 'config/newrelic.yml'
     end

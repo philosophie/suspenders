@@ -118,7 +118,6 @@ module Suspenders
 
     def setup_test_environment
       say 'Setting up the test environment'
-      build :set_up_factory_bot_for_rspec
       build :generate_rspec
       build :configure_rspec
       build :enable_database_cleaner
