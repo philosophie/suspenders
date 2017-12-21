@@ -453,7 +453,7 @@ end
       rack_env = "RACK_ENV=staging RAILS_ENV=staging"
       app_name = heroku_app_name_for("staging")
 
-      run_heroku "create #{app_name} --ssh-git #{flags}", "staging"
+      run_heroku "create #{app_name} #{flags}", "staging"
       run_heroku "config:add #{rack_env}", "staging"
       configure_heroku_app("staging")
     end
@@ -461,7 +461,7 @@ end
     def create_production_heroku_app(flags)
       app_name = heroku_app_name_for("production")
 
-      run_heroku "create #{app_name} --ssh-git #{flags}", "production"
+      run_heroku "create #{app_name} #{flags}", "production"
       configure_heroku_app("production")
     end
 
