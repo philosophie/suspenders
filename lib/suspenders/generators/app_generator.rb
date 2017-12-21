@@ -1,6 +1,5 @@
 require 'rails/generators'
 require 'rails/generators/rails/app/app_generator'
-require 'pry-byebug'
 
 module Suspenders
   class AppGenerator < Rails::Generators::AppGenerator
