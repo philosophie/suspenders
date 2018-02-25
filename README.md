@@ -99,6 +99,7 @@ Suspenders also comes with:
   environments
 * The analytics adapter [Segment][segment] (and therefore config for Google
   Analytics, Intercom, Facebook Ads, Twitter Ads, etc.)
+* Webpacker (optional)
 
 [stairs]: https://github.com/philosophie/stairs
 [compress]: http://robots.thoughtbot.com/content-compression-with-rack-deflater/
@@ -106,6 +107,12 @@ Suspenders also comes with:
 [binstub]: https://github.com/thoughtbot/suspenders/pull/282
 [i18n]: https://github.com/thoughtbot/suspenders/pull/304
 [segment]: https://segment.com
+
+## Webpack(er)
+
+Optionally use Webpacker instead of (or in addition to) asset pipeline:
+
+    philosophies-suspenders my_new_app --webpack
 
 ## CSS Frameworks
 
