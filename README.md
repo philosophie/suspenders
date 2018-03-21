@@ -134,6 +134,8 @@ By default, suspenders will:
 * Adds free Airbrake add-on
 * Adds free Papertrail add-on
 
+Please ensure your Heroku account has a verified credit card in order for the above addons to be installed.
+
 [rails-12factor]: https://github.com/heroku/rails_12factor
 
 You can optionally specify alternate Heroku flags:
