@@ -9,6 +9,7 @@ latest.dump
 .build
 
 # Ruby & Rails
+.byebug_history
 .zsh_rake_cache
 .rbenv-version
 .rbenv-vars
