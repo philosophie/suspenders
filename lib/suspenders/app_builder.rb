@@ -432,6 +432,10 @@ end
 
     def init_git
       run 'git init'
+      template '.overcommit.yml', '.overcommit.yml'
+      bundle_command 'exec overcommit --install'
+      bundle_command 'exec overcommit --sign'
+      bundle_command 'exec overcommit --sign pre-commit'
     end
 
     def setup_deployment_environment_branches
@@ -440,13 +444,13 @@ end
     end
 
     def run_rubocop_autofixes
-      rn 'rm -rf tests/'
+      run 'rm -rf test/'
       bundle_command 'exec rubocop -a'
     end
 
     def create_initial_commit
       run 'git add -A'
-      run 'git commit -m "Initial app setup."'
+      run 'git commit -m "Initial app setup." --no-verify'
     end
 
     def setup_and_push_to_origin_remote(remote_url)
