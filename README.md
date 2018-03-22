@@ -147,7 +147,7 @@ See all possible Heroku flags:
 
 You can bypass all Heroku functionality with the `--skip-heroku` option:
 
-    suspenders app --skip-heroku true
+    philosophies-suspenders app --skip-heroku true
 
 ## Git
 
@@ -157,10 +157,12 @@ By default, suspenders will:
 * Create `staging` and `production` branches for deployment
 * Make an initial commit
 
+By default, pre-commit hooks are setup to run `bin/rails`. To override this while committing pass the `--no-verify` option to your commit.
+
 You can optionally provide a remote URL via the `--origin` option and suspenders
 will push all branches to that remote.
 
-    suspenders app --origin git@github.com:philosopie/app.git
+    philosophies-suspenders app --origin git@github.com:philosopie/app.git
 
 You can bypass all git functionality with the `--skip-git` option:
 

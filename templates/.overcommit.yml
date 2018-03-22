@@ -1,0 +1,10 @@
+verify_signatures: false
+
+CommitMsg:
+  ALL:
+    enabled: false
+
+PreCommit:
+  Rake:
+    enabled: true
+    command: ['bundle', 'exec', 'bin/rails']
