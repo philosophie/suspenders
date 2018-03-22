@@ -69,6 +69,7 @@ module Suspenders
       invoke :setup_bundler_audit
       invoke :setup_spring
       invoke :run_stairs
+      invoke :run_rubocop_autofixes
       invoke :initial_commit_and_branching
       invoke :push_to_origin
       invoke :setup_css_framework
@@ -198,6 +199,11 @@ module Suspenders
         invoke :setup_gitignore
         invoke :init_git
       end
+    end
+
+    def run_rubocop_autofixes
+      say 'Running rubocop autofixes'
+      build :run_rubocop_autofixes
     end
 
     def initial_commit_and_branching

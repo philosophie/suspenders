@@ -439,6 +439,11 @@ end
       run 'git branch production'
     end
 
+    def run_rubocop_autofixes
+      rn 'rm -rf tests/'
+      bundle_command 'exec rubocop -a'
+    end
+
     def create_initial_commit
       run 'git add -A'
       run 'git commit -m "Initial app setup."'
