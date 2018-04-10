@@ -29,3 +29,11 @@ BlockLength:
   Exclude:
     - "spec/**/*"
     - "app/admin/**/*"
+
+MultilineMethodCallIndentation:
+  Exclude:
+    - "spec/**/*"
+
+AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*"
