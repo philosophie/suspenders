@@ -23,8 +23,17 @@ AllCops:
     - "config/**/*"
     - "Rakefile"
     - "spec/i18n_spec.rb"
+    - "node_modules/**/*"
 
 BlockLength:
   Exclude:
     - "spec/**/*"
     - "app/admin/**/*"
+
+MultilineMethodCallIndentation:
+  Exclude:
+    - "spec/**/*"
+
+AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*"
