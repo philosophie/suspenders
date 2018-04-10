@@ -222,6 +222,10 @@ end
       )
     end
 
+    def run_webpacker_install
+      bundle_command "exec rails webpacker:install"
+    end
+
     def setup_heroku_specific_gems
       inject_into_file(
         "Gemfile",
@@ -325,6 +329,14 @@ end
         'app/views/application/_javascript.html.erb',
         %{\n<%= javascript_pack_tag 'application' %>},
         after: Regexp.new("<%= javascript_include_tag :application %>")
+      )
+    end
+
+    def inject_webpacker_into_setup
+      inject_into_file(
+        'bin/setup',
+        %{\nsystem! 'npm install -g yarn'\nsystem! 'yarn install'\n},
+        after: /# Install JavaScript dependencies if using Yarn/
       )
     end
 
@@ -584,9 +596,21 @@ end
       template 'airbrake.rb', 'config/initializers/airbrake.rb'
     end
 
-    def run_stairs
-      bundle_command 'install'
-      bundle_command 'exec stairs --use-defaults'
+    def copy_env_example
+      template ".env.example", ".env.example"
+      append_file ".env.example", "SECRET_KEY_BASE=#{generate_secret}"
+    end
+
+    def copy_setup
+      bundle_command "install"
+      run "rm bin/setup"
+      template "setup.rb", "bin/setup"
+      run "rm setup.rb"
+    end
+
+    def run_bin_setup
+      run "chmod 755 bin/setup"
+      run "bin/setup"
     end
 
     def configure_quiet_assets
@@ -604,6 +628,10 @@ end
       RUBY
 
       inject_into_class "config/application.rb", "Application", config
+    end
+
+    def generate_secret
+      SecureRandom.hex(64)
     end
 
     private
@@ -624,10 +652,6 @@ end
     def run_heroku(command, environment)
       path_addition = override_path_for_tests
       run "#{path_addition} heroku #{command} --remote #{environment}"
-    end
-
-    def generate_secret
-      SecureRandom.hex(64)
     end
 
     def serve_static_files_line
