@@ -68,7 +68,7 @@ module Suspenders
       invoke :setup_segment
       invoke :setup_bundler_audit
       invoke :setup_spring
-      invoke :run_stairs
+      invoke :run_setup
       invoke :run_rubocop_autofixes
       invoke :initial_commit_and_branching
       invoke :push_to_origin
@@ -274,8 +274,16 @@ module Suspenders
       build :remove_routes_comment_lines
     end
 
-    def run_stairs
-      build :run_stairs
+    def run_setup
+      build :copy_env_example
+      build :copy_setup
+      if options[:webpack]
+        build :inject_webpacker_into_setup
+        build :run_bin_setup
+        build :run_webpacker_install
+      else
+        build :run_bin_setup
+      end
     end
 
     def outro

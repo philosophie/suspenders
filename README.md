@@ -88,7 +88,6 @@ And testing gems like:
 
 Suspenders also comes with:
 
-* [Stairs][stairs] for new developer setup
 * Rails' flashes set up and in application layout
 * A few nice time formats set up for localization
 * `Rack::Deflater` to [compress responses with Gzip][compress]
@@ -101,7 +100,6 @@ Suspenders also comes with:
   Analytics, Intercom, Facebook Ads, Twitter Ads, etc.)
 * Webpacker (optional)
 
-[stairs]: https://github.com/philosophie/stairs
 [compress]: http://robots.thoughtbot.com/content-compression-with-rack-deflater/
 [pool]: https://devcenter.heroku.com/articles/concurrency-and-database-connections
 [binstub]: https://github.com/thoughtbot/suspenders/pull/282
