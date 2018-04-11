@@ -276,7 +276,6 @@ module Suspenders
 
     def run_setup
       build :copy_env_example
-      build :copy_setup
       if options[:webpack]
         build :inject_webpacker_into_setup
         build :run_bin_setup
