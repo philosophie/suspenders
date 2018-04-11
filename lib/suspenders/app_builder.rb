@@ -456,9 +456,10 @@ end
       run 'git branch production'
     end
 
-    def run_rubocop_autofixes
+    def run_autofixes
       run 'rm -rf test/'
       bundle_command 'exec rubocop -a'
+      run 'i18n-tasks normalize'
     end
 
     def create_initial_commit
