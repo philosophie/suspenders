@@ -7,4 +7,4 @@ CommitMsg:
 PreCommit:
   Rake:
     enabled: true
-    command: ['bundle', 'exec', 'bin/rails']
+    command: ['bundle', 'exec', 'bin/rake']
