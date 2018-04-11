@@ -32,7 +32,8 @@ module Suspenders
     end
 
     def provide_setup_script
-      template "setup.rb", "setup.rb"
+      run "rm bin/setup"
+      template "setup.rb", "bin/setup"
     end
 
     def configure_generators
@@ -599,13 +600,6 @@ end
     def copy_env_example
       template ".env.example", ".env.example"
       append_file ".env.example", "SECRET_KEY_BASE=#{generate_secret}"
-    end
-
-    def copy_setup
-      bundle_command "install"
-      run "rm bin/setup"
-      template "setup.rb", "bin/setup"
-      run "rm setup.rb"
     end
 
     def run_bin_setup

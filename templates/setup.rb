@@ -27,4 +27,7 @@ chdir APP_ROOT do
 
   puts "\n== Preparing database =="
   system! 'bin/rails db:setup'
+
+  puts "\n== Installing git pre-commit hooks =="
+  system! 'overcommit --install'
 end
