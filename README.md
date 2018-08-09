@@ -216,6 +216,46 @@ Philosophie's Suspenders is meant to support the core functionality of a new rai
 - if you are able to, create a PR for the new functionality
 - if you need help creating a PR find someone to pair with
 
+## Deploy new version to rubygems
+
+- sign up to [rubygems.org](https://rubygems.org)
+
+- get an existing owner to add you to publish permissions using
+```
+gem owner philosophies-suspenders -a <email address>
+```
+
+- clone the repo locally and verify install
+```
+git clone git@github.com:philosophie/suspenders.git
+cd suspenders
+bundle
+```
+
+- make changes
+- PR and commit to master
+- bump the version straight to master
+```
+#lib/suspenders/version.rb
+VERSION = "x.x.x"
+```
+
+- signin as rubygems user
+```
+gem signin
+```
+
+- release to rubygems
+```
+rake release
+```
+
+#### Update to newest ruby and rails versions
+
+- update ruby version in ```lib/suspenders/version.rb```
+- update ruby version in ```.ruby-version```
+
+
 ## License
 
 Suspenders is Copyright © 2008-2015 thoughtbot.
