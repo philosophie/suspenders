@@ -1,10 +1,12 @@
 source "https://rubygems.org"
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "<%= Suspenders::RUBY_VERSION %>"
 gem "rails", "<%= Suspenders::RAILS_VERSION %>"
 
 gem "airbrake", require: false
 gem "autoprefixer-rails"
+gem "bootsnap", require: false
 gem "bundler"
 gem "flutie"
 gem "i18n-tasks"
