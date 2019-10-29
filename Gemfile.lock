@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    philosophies-suspenders (2.2.5)
+    philosophies-suspenders (2.2.6)
       bundler (~> 2.0)
       rails (~> 5.2.3)
 
