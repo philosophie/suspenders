@@ -326,10 +326,10 @@ end
     end
 
     def inject_webpacker_into_layout
-      inject_into_file(
+      gsub_file(
         'app/views/application/_javascript.html.erb',
-        %{\n<%= javascript_pack_tag 'application' %>},
-        after: Regexp.new("<%= javascript_include_tag :application %>")
+        Regexp.new("<%= javascript_include_tag :application %>"),
+        %{\n<%= javascript_pack_tag 'application' %>\n<%= stylesheet_pack_tag 'application' %>}
       )
     end
 
